@@ -13,6 +13,7 @@ class TitledBottomNavigationBar extends StatefulWidget {
   final Color inactiveStripColor;
   final Color indicatorColor;
   final bool enableShadow;
+  final bool animated;
   int currentIndex;
   final ValueChanged<int> onTap;
   final List<TitledNavigationBarItem> items;
@@ -29,6 +30,7 @@ class TitledBottomNavigationBar extends StatefulWidget {
     this.indicatorColor,
     this.enableShadow = true,
     this.currentIndex = 0,
+    this.animated = true,
   })  : assert(items != null),
         assert(items.length >= 2 && items.length <= 5),
         assert(onTap != null),
@@ -43,7 +45,7 @@ class TitledBottomNavigationBar extends StatefulWidget {
 class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
   static const double BAR_HEIGHT = 60;
   static const double INDICATOR_HEIGHT = 2;
-
+  bool get animated => widget.animated;
   bool get reverse => widget.reverse;
 
   Curve get curve => widget.curve;
@@ -139,12 +141,22 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
             opacity: isSelected ? 0.0 : 1.0,
             duration: duration,
             curve: curve,
-            child: reverse ? item.icon : _buildText(item),
+            child: (() {
+              if (animated) {
+                if (!reverse) return _buildText(item);
+              }
+              return item.icon;
+            }()),
           ),
           AnimatedAlign(
             duration: duration,
             alignment: isSelected ? Alignment.center : Alignment(0, 5.2),
-            child: reverse ? _buildText(item) : item.icon,
+            child: (() {
+            if (animated) {
+              if (!reverse) return item.icon;
+            }
+            return _buildText(item);
+          }()),
           ),
         ],
       ),
