@@ -98,8 +98,7 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
             top: 0,
             width: width,
             child: AnimatedAlign(
-              alignment:
-                  Alignment(_getIndicatorPosition(widget.currentIndex), 0),
+              alignment: Alignment(_getIndicatorPosition(widget.currentIndex), 0),
               curve: curve,
               duration: duration,
               child: Container(
@@ -122,10 +121,11 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
   }
 
   Widget _buildIcon(TitledNavigationBarItem item) {
-    return Icon(
+    /* return Icon(
       item.icon,
       color: reverse ? widget.inactiveColor : activeColor,
-    );
+    ); */
+    return item.icon;
   }
 
   Widget _buildText(TitledNavigationBarItem item) {

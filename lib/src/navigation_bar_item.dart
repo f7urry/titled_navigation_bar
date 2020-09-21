@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TitledNavigationBarItem {
   final Widget title;
-  final IconData icon;
+  final Icon icon;
   final Color backgroundColor;
 
   TitledNavigationBarItem({
