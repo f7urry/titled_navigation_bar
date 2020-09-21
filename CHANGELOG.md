@@ -1,5 +1,9 @@
 ## 4.1.0
 
+* Change IconData to Icon for ImageAsset
+
+## 4.1.0
+
 * Added support RTL TextDirection. See (#22)
 
 ## 4.0.0

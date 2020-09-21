@@ -120,14 +120,6 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
     setState(() {});
   }
 
-  Widget _buildIcon(TitledNavigationBarItem item) {
-    /* return Icon(
-      item.icon,
-      color: reverse ? widget.inactiveColor : activeColor,
-    ); */
-    return item.icon;
-  }
-
   Widget _buildText(TitledNavigationBarItem item) {
     return DefaultTextStyle.merge(
       child: item.title,
@@ -147,12 +139,12 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
             opacity: isSelected ? 0.0 : 1.0,
             duration: duration,
             curve: curve,
-            child: reverse ? _buildIcon(item) : _buildText(item),
+            child: reverse ? item.icon : _buildText(item),
           ),
           AnimatedAlign(
             duration: duration,
             alignment: isSelected ? Alignment.center : Alignment(0, 5.2),
-            child: reverse ? _buildText(item) : _buildIcon(item),
+            child: reverse ? _buildText(item) : item.icon,
           ),
         ],
       ),
